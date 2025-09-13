@@ -1,0 +1,8 @@
+export const HOME = "/home"
+export const CONTACTUS = "/contact-us"
+export const DIRECTORY = "/directory"
+export const SEARCH = "/search"
+export const EXPLORE = "/explore"
+export const NEWS = "/news"
+export const EVENTS = "/events"
+export const JOINADVERSITE = "/join-adverstise"
