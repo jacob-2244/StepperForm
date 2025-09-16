@@ -8,9 +8,9 @@ import Form from "@/components/Form"
 export default function SEASONALSERVICE() {
   return (
     <div 
-      className="min-h-screen bg-cover bg-center bg-no-repeat "
+      className="min-h-screen  bg-center  "
       style={{
-        backgroundImage: "url('/images/background.jpg')"
+        backgroundImage: "url('/svgs/background.svg')"
       }}
     >
       <Header />

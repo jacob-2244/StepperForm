@@ -8,7 +8,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CustomStepper from "@/components/Stepper"; 
+import CustomStepper from "@/components/Stepper";
+
+
 
 type FormInputs = {
   fName: string;
@@ -109,9 +111,9 @@ export default function Form() {
     setActiveStep(steps.length);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  // const handleReset = () => {
+  //   setActiveStep(0);
+  // };
 
   const renderStepContent = (step: number) => {
     switch (step) {
@@ -212,7 +214,7 @@ export default function Form() {
                     </option>
                   ))}
                 </select>
-                {errors.suffix && <p className="text-red-500 text-sm">{errors.suffix.message}</p>}
+                {/* {errors.suffix && <p className="text-red-500 text-sm">{errors.suffix.message}</p>} */}
               </div>
 
               <div className="flex-1 flex flex-col gap-2">
@@ -376,8 +378,16 @@ export default function Form() {
 
       case 1:
         return (
-          <section className="flex flex-col gap-2">
-            <h2 className="text-xl font-bold">Confirm Service Address</h2>
+          <section className="flex flex-col gap-2 h-fit justify-center w-full">
+            <div className="w-full items-center ">
+              <Image
+                src="/images/map.jpg"
+                alt="map location"
+                height={1000}
+                width={1000}
+
+              />
+            </div>
             <p className="font-bold text-gray-800 bg-gray-100 p-3 rounded">
               Map Location:{" "}
               {`${watch("direction1") || ""} ${watch("addressNumber") || ""} ${watch("street") || ""} ${watch("suffix") || ""} ${watch("direction2") || ""}, ${watch("city") || ""}, ${watch("state") || ""} ${watch("zip") || ""}`}
@@ -445,8 +455,8 @@ export default function Form() {
 
       case 3:
         return (
-          <section className="flex flex-col w-full">
-            <Image src="/images/cart.png" height={500} width={500} alt="cart" />
+          <section className="flex flex-col w-full justify-center items-center">
+            <Image src="/images/cart.png" height={700} width={700} alt="cart" />
             <p className="text-black font-bold text-2xl">The total price due to start the service select is $360</p>
           </section>
         );
@@ -500,50 +510,87 @@ export default function Form() {
 
   if (activeStep === steps.length) {
     return (
-      <Box className="w-full max-w-5xl p-6 shadow-md border rounded flex flex-col gap-6">
+      <Box sx={{height:'400px'}}className="w-full max-w-5xl p-6 shadow-md border rounded-lg flex flex-col gap-20 bg-white ">
         <CustomStepper steps={steps} activeStep={steps.length} />
-        <h2 className="text-app_primary text-2xl text-center">Thank You for SignUp</h2>
-        <div className="flex justify-center">
-          <Button variant="contained" onClick={handleReset}>
-            Reset
-          </Button>
-        </div>
+        <h2 className=" text-5xl text-center mt-10 mb-5 ">Thank You for SignUp</h2>
+      
       </Box>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full justify-center p-6 shadow-md border rounded flex flex-col gap-6 bg-white">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full justify-center p-6 shadow-md border rounded-lg flex flex-col gap-6 bg-white">
       <CustomStepper steps={steps} activeStep={activeStep} />
       <Box sx={{ mt: 2 }}>{renderStepContent(activeStep)}</Box>
 
       <div className="flex justify-between pt-4">
-        {activeStep > 0 ? (
-          <Button variant="outlined" onClick={handleBack}>
+        {activeStep === 0 ? (
+          <Button
+          
+  
+            sx={{
+            
+              color: 'gray',
+              border: 'none',
+            }}
+          >
             Back
           </Button>
+        ) :activeStep ===1? (
+          <Button
+  
+            sx={{
+              backgroundColor:'black',
+              color:'white',
+            }}
+            className="bg-black text-white"
+          >
+            Change Address
+          </Button>
         ) : (
-          <div />
+           (
+          <Button
+            onClick={handleBack}
+            sx={{
+              color: 'white',
+              backgroundColor:'black'
+            }}
+            className="bg-black text-white"
+          >
+            Back
+          </Button>
+        )
         )}
 
+
+
+
+
         {activeStep === 0 ? (
-          <Button variant="contained" onClick={handleNext} type="button">
+
+          <Button className="bg-black text-white hover:bg-app_primary" variant="contained"
+            sx={{ backgroundColor: 'black' }} onClick={handleNext} type="button">
             Next
           </Button>
+
+          
         ) : activeStep === 1 || activeStep === 2 || activeStep === 3 ? (
-          <Button 
-            variant="contained" 
-            className="bg-black text-white" 
+          <Button
+            sx={{ backgroundColor: 'black' }}
+            variant="contained"
+            className="bg-black text-white hover:bg-app_primary"
             onClick={(e) => {
               e.preventDefault();
               handleNext();
-            }} 
+            }}
             type="button"
           >
             Confirm
           </Button>
         ) : activeStep === 4 ? (
-          <Button type="submit" variant="contained" className="bg-app_primary">
+          <Button type="submit" variant="contained" sx={{
+            backgroundColor: 'black'
+          }} className="hover:bg-app_primary">
             Finish
           </Button>
         ) : null}

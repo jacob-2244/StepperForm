@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { LocalShipping, Delete, Recycling,WarningAmberOutlined,Payment,CalendarToday } from '@mui/icons-material';
 
 const Header = () => {
     return (
@@ -42,25 +43,43 @@ const Header = () => {
         </div>
 
 
-        <div className="flex flex-wrap justify-end gap-3 pt-3 ">
-        <button className="bg-white px-4 py-2 flex items-center gap-2 shadow-md font-semibold">
-          🚛 Roll Off Guide
-        </button>
-        <button className="bg-white px-4 py-2 flex items-center gap-2 shadow-md font-semibold ">
-          🗑 Trash Guide
-        </button>
-        <button className="bg-white px-4 py-2 flex items-center gap-2 shadow-md font-semibold ">
-          ♻ Recycling Guide
-        </button>
-        <button className="bg-white px-4 py-2 flex items-center gap-2 shadow-md font-semibold ">
-          ⚠ Hazardous Guide
-        </button>
-        <button className="bg-white px-4 py-2 flex items-center gap-2 shadow-md font-semibold ">
-          📅 2023 Calendar
-        </button>
-        <button className="bg-white px-4 py-2 flex items-center gap-2 shadow-md font-semibold ">
-          💳 Pay Online
-        </button>
+        <div className="flex flex-wrap justify-end gap-3 pt-3 pr-3 ">
+          <div className="flex gap-2 bg-white px-3 py-2  items-center shadow-md">
+          <LocalShipping/>
+        <p className=" font-semibold">
+          Roll Off Guide
+        </p>
+        </div>
+         <div className="flex gap-2 bg-white px-3 py-2  items-center shadow-md">
+          <Delete/>
+        <p className=" font-semibold">
+          Trash Guide
+        </p>
+        </div>
+          <div className="flex gap-2 bg-white px-3 py-2  items-center shadow-md">
+          <Recycling/>
+        <p className=" font-semibold">
+         Recycling Guide
+        </p>
+        </div>
+          <div className="flex gap-2 bg-white px-3 py-2  items-center shadow-md">
+          <WarningAmberOutlined/>
+        <p className=" font-semibold">
+         Hazardous Guide
+        </p>
+        </div>
+          <div className="flex gap-2 bg-white px-3 py-2  items-center shadow-md">
+          <CalendarToday/>
+        <p className=" font-semibold">
+          2023 Calender
+        </p>
+        </div>
+          <div className="flex gap-2 bg-white px-3 py-2  items-center shadow-md">
+          <Payment/>
+        <p className=" font-semibold">
+          Pay Online
+        </p>
+        </div>
       </div>
         </>
     );
