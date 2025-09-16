@@ -17,8 +17,8 @@ type StepperProps = {
 export default function CustomStepper({ steps, activeStep }: StepperProps) {
   return (
     <Box sx={{ width: "100%" }}>
-      <h2 className="text-3xl text-app_primary font-bold text-center">Seasonal Service Registration</h2>
-      <Stepper className="mt-4"
+      <h2 className="text-[34px] text-app_primary font-bold text-center">Seasonal Service Registration</h2>
+      <Stepper className="mt-4 px-20"
         activeStep={activeStep}
 
         connector={
@@ -61,8 +61,8 @@ export default function CustomStepper({ steps, activeStep }: StepperProps) {
               StepIconComponent={({ active, completed }) => (
                 <div
                   style={{
-                    width: '40px',
-                    height: '40px',
+                    width: '30px',
+                    height: '30px',
                     borderRadius: '50%',
                     border: active ? '3px solid #890202' : 'none',
                     backgroundColor: completed ? '#890202' : '#000',
@@ -72,6 +72,7 @@ export default function CustomStepper({ steps, activeStep }: StepperProps) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    gap:'2px'
                   }}
                 >
                   {completed ? '✓' : num}

@@ -50,6 +50,8 @@ const directions = ["W", "E", "N", "S"];
 const suffixes = ["MR", "CIR", "GIR"];
 const steps = [1, 2, 3, 4, 5];
 
+const phoneOtions = ['+92', '+93', '+56']
+
 export default function Form() {
   const {
     register,
@@ -120,7 +122,7 @@ export default function Form() {
       case 0:
         return (
           <section className="flex flex-col gap-2">
-            <h2 className="text-xl font-bold mb-2 text-app_primary">SERVICE INFORMATION</h2>
+            <h2 className="text-2xl font-bold mb-2 text-app_primary">SERVICE INFORMATION</h2>
 
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 flex flex-col gap-2">
@@ -128,7 +130,7 @@ export default function Form() {
                 <input
                   {...register("fName", { required: "First name is required" })}
                   placeholder="Enter Your First Name"
-                  className={`border p-2 rounded ${errors.fName ? "border-red-500" : ""}`}
+                  className={`border px-2 py-4 rounded ${errors.fName ? "border-red-500" : ""}`}
                 />
                 {errors.fName && <p className="text-red-500 text-sm">{errors.fName.message}</p>}
               </div>
@@ -138,7 +140,7 @@ export default function Form() {
                 <input
                   {...register("lName", { required: "Last name is required" })}
                   placeholder="Enter Your Last Name"
-                  className={`border p-2 rounded ${errors.lName ? "border-red-500" : ""}`}
+                  className={`border px-2 py-4 rounded ${errors.lName ? "border-red-500" : ""}`}
                 />
                 {errors.lName && <p className="text-red-500 text-sm">{errors.lName.message}</p>}
               </div>
@@ -147,11 +149,21 @@ export default function Form() {
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 flex flex-col gap-2">
                 <label className="font-bold">Phone Number*</label>
-                <input
-                  {...register("phone", { required: "Phone number is required" })}
-                  placeholder="Enter Your Phone Number"
-                  className={`border p-2 rounded ${errors.phone ? "border-red-500" : ""}`}
-                />
+                <div className="flex  w-full">
+                  <select className="border text-center py-4 rounded">
+                    <option value=""></option>
+                    {phoneOtions.map((dir) => (
+                      <option key={dir} value={dir}>
+                        {dir}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    {...register("phone", { required: "Phone number is required" })}
+                    placeholder="Enter Your Phone Number"
+                    className={`border px-2  w-full py-4 rounded ${errors.phone ? "border-red-500" : ""}`}
+                  />
+                </div>
                 {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
               </div>
 
@@ -161,18 +173,18 @@ export default function Form() {
                   type="email"
                   {...register("email", { required: "Email is required" })}
                   placeholder="Enter Your Email"
-                  className={`border p-2 rounded ${errors.email ? "border-red-500" : ""}`}
+                  className={`border px-2 py-4 rounded ${errors.email ? "border-red-500" : ""}`}
                 />
                 {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
               </div>
             </div>
 
-            <h3 className="text-xl font-bold text-app_primary">SERVICE ADDRESS</h3>
+            <h3 className="text-2xl font-bold text-app_primary mt-4">SERVICE ADDRESS</h3>
 
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 flex flex-col gap-2">
                 <label className="font-bold">Direction 1</label>
-                <select {...register("direction1")} className="border p-2 rounded">
+                <select {...register("direction1")} className="border px-2 py-4 rounded">
                   <option value="">Select</option>
                   {directions.map((dir) => (
                     <option key={dir} value={dir}>
@@ -187,7 +199,7 @@ export default function Form() {
                 <input
                   {...register("addressNumber", { required: "Address number is required" })}
                   placeholder="Enter Your Address Number"
-                  className={`border p-2 rounded ${errors.addressNumber ? "border-red-500" : ""}`}
+                  className={`border px-2 py-4 rounded ${errors.addressNumber ? "border-red-500" : ""}`}
                 />
                 {errors.addressNumber && <p className="text-red-500 text-sm">{errors.addressNumber.message}</p>}
               </div>
@@ -199,14 +211,14 @@ export default function Form() {
                 <input
                   {...register("street", { required: "Street is required" })}
                   placeholder="Enter Your Street"
-                  className={`border p-2 rounded ${errors.street ? "border-red-500" : ""}`}
+                  className={`border px-2 py-4 rounded ${errors.street ? "border-red-500" : ""}`}
                 />
                 {errors.street && <p className="text-red-500 text-sm">{errors.street.message}</p>}
               </div>
 
               <div className="flex-1 flex flex-col gap-2">
                 <label className="font-bold">Suffix*</label>
-                <select {...register("suffix", { required: "Suffix is required" })} className="border p-2 rounded">
+                <select {...register("suffix", { required: "Suffix is required" })} className="border px-2 py-4 rounded">
                   <option value="">Select</option>
                   {suffixes.map((suf) => (
                     <option key={suf} value={suf}>
@@ -214,12 +226,12 @@ export default function Form() {
                     </option>
                   ))}
                 </select>
-                {/* {errors.suffix && <p className="text-red-500 text-sm">{errors.suffix.message}</p>} */}
+                {errors.suffix && <p className="text-red-500 text-sm">{errors.suffix.message}</p>}
               </div>
 
               <div className="flex-1 flex flex-col gap-2">
                 <label className="font-bold">Direction 2</label>
-                <select {...register("direction2")} className="border p-2 rounded">
+                <select {...register("direction2")} className="border px-2 py-4 rounded">
                   <option value="">Select</option>
                   {directions.map((dir) => (
                     <option key={dir} value={dir}>
@@ -236,7 +248,7 @@ export default function Form() {
                 <input
                   {...register("city", { required: "City is required" })}
                   placeholder="Enter Your City"
-                  className={`border p-2 rounded ${errors.city ? "border-red-500" : ""}`}
+                  className={`border px-2 py-4 rounded ${errors.city ? "border-red-500" : ""}`}
                 />
                 {errors.city && <p className="text-red-500 text-sm">{errors.city.message}</p>}
               </div>
@@ -246,7 +258,7 @@ export default function Form() {
                 <input
                   {...register("state", { required: "State is required" })}
                   placeholder="Enter Your State"
-                  className={`border p-2 rounded ${errors.state ? "border-red-500" : ""}`}
+                  className={`border px-2 py-4 rounded ${errors.state ? "border-red-500" : ""}`}
                 />
                 {errors.state && <p className="text-red-500 text-sm">{errors.state.message}</p>}
               </div>
@@ -256,7 +268,7 @@ export default function Form() {
                 <input
                   {...register("zip", { required: "Zip Code is required" })}
                   placeholder="Enter Your Zip Code"
-                  className={`border p-2 rounded ${errors.zip ? "border-red-500" : ""}`}
+                  className={`border px-2 py-4 rounded ${errors.zip ? "border-red-500" : ""}`}
                 />
                 {errors.zip && <p className="text-red-500 text-sm">{errors.zip.message}</p>}
               </div>
@@ -280,7 +292,7 @@ export default function Form() {
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="flex-1 flex flex-col gap-2">
                     <label className="font-bold">Direction 1</label>
-                    <select {...register("billingDirection1")} className="border p-2 rounded">
+                    <select {...register("billingDirection1")} className="border px-2 py-4 rounded">
                       <option value="">Select</option>
                       {directions.map((dir) => (
                         <option key={dir} value={dir}>
@@ -295,7 +307,7 @@ export default function Form() {
                     <input
                       {...register("billingAddressNumber", { required: "Billing address number is required" })}
                       placeholder="Enter Billing Address Number"
-                      className={`border p-2 rounded ${errors.billingAddressNumber ? "border-red-500" : ""}`}
+                      className={`border px-2 py-4 rounded ${errors.billingAddressNumber ? "border-red-500" : ""}`}
                     />
                     {errors.billingAddressNumber && (
                       <p className="text-red-500 text-sm">{errors.billingAddressNumber.message}</p>
@@ -309,14 +321,14 @@ export default function Form() {
                     <input
                       {...register("billingStreet", { required: "Billing street is required" })}
                       placeholder="Enter Billing Street"
-                      className={`border p-2 rounded ${errors.billingStreet ? "border-red-500" : ""}`}
+                      className={`border px-2 py-4 rounded ${errors.billingStreet ? "border-red-500" : ""}`}
                     />
                     {errors.billingStreet && <p className="text-red-500 text-sm">{errors.billingStreet.message}</p>}
                   </div>
 
                   <div className="flex-1 flex flex-col gap-2">
                     <label className="font-bold">Suffix*</label>
-                    <select {...register("billingSuffix", { required: "Billing suffix is required" })} className="border p-2 rounded">
+                    <select {...register("billingSuffix", { required: "Billing suffix is required" })} className="border px-2 py-4 rounded">
                       <option value="">Select</option>
                       {suffixes.map((suf) => (
                         <option key={suf} value={suf}>
@@ -329,7 +341,7 @@ export default function Form() {
 
                   <div className="flex-1 flex flex-col gap-2">
                     <label className="font-bold">Direction 2</label>
-                    <select {...register("billingDirection2")} className="border p-2 rounded">
+                    <select {...register("billingDirection2")} className="border px-2 py-4 rounded">
                       <option value="">Select</option>
                       {directions.map((dir) => (
                         <option key={dir} value={dir}>
@@ -346,7 +358,7 @@ export default function Form() {
                     <input
                       {...register("billingCity", { required: "Billing city is required" })}
                       placeholder="Enter Billing City"
-                      className={`border p-2 rounded ${errors.billingCity ? "border-red-500" : ""}`}
+                      className={`border px-2 py-4 rounded ${errors.billingCity ? "border-red-500" : ""}`}
                     />
                     {errors.billingCity && <p className="text-red-500 text-sm">{errors.billingCity.message}</p>}
                   </div>
@@ -356,7 +368,7 @@ export default function Form() {
                     <input
                       {...register("billingState", { required: "Billing state is required" })}
                       placeholder="Enter Billing State"
-                      className={`border p-2 rounded ${errors.billingState ? "border-red-500" : ""}`}
+                      className={`border px-2 py-4 rounded ${errors.billingState ? "border-red-500" : ""}`}
                     />
                     {errors.billingState && <p className="text-red-500 text-sm">{errors.billingState.message}</p>}
                   </div>
@@ -366,7 +378,7 @@ export default function Form() {
                     <input
                       {...register("billingZip", { required: "Billing zip is required" })}
                       placeholder="Enter Billing Zip Code"
-                      className={`border p-2 rounded ${errors.billingZip ? "border-red-500" : ""}`}
+                      className={`border px-2 py-4 rounded ${errors.billingZip ? "border-red-500" : ""}`}
                     />
                     {errors.billingZip && <p className="text-red-500 text-sm">{errors.billingZip.message}</p>}
                   </div>
@@ -381,7 +393,7 @@ export default function Form() {
           <section className="flex flex-col gap-2 h-fit justify-center w-full">
             <div className="w-full items-center ">
               <Image
-                src="/images/map.jpg"
+                src="/images/location.jpg"
                 alt="map location"
                 height={1000}
                 width={1000}
@@ -426,7 +438,7 @@ export default function Form() {
 
             <div>
               <label className="font-bold">Please select the Frequency of service</label>
-              <select {...register("frequency")} className="border p-2 rounded w-full">
+              <select {...register("frequency")} className="border px-2 py-4 rounded w-full">
                 <option value="">Select</option>
                 <option value="Weekly">Weekly</option>
                 <option value="Bi-Weekly">Bi-Weekly</option>
@@ -435,17 +447,17 @@ export default function Form() {
 
             <div>
               <label className="font-bold">Quantity</label>
-              <input type="number" {...register("quantity")} placeholder="Enter quantity" className="border p-2 rounded w-full" />
+              <input type="number" {...register("quantity")} placeholder="Enter quantity" className="border px-2 py-4 rounded w-full" />
             </div>
 
             <div className="flex gap-4">
               <div className="flex-1">
                 <label className="font-bold">Start Date</label>
-                <input {...register("startDate")} type="date" className="border p-2 rounded w-full" />
+                <input {...register("startDate")} type="date" className="border px-2 py-4 rounded w-full" />
               </div>
               <div className="flex-1">
                 <label className="font-bold">End Date</label>
-                <input {...register("endDate")} type="date" className="border p-2 rounded w-full" />
+                <input {...register("endDate")} type="date" className="border px-2 py-4 rounded w-full" />
               </div>
             </div>
 
@@ -510,10 +522,10 @@ export default function Form() {
 
   if (activeStep === steps.length) {
     return (
-      <Box sx={{height:'400px'}}className="w-full max-w-5xl p-6 shadow-md border rounded-lg flex flex-col gap-20 bg-white ">
+      <Box sx={{ height: '400px' }} className="w-full p-6 shadow-md border rounded-lg flex flex-col gap-20 bg-white container ">
         <CustomStepper steps={steps} activeStep={steps.length} />
         <h2 className=" text-5xl text-center mt-10 mb-5 ">Thank You for SignUp</h2>
-      
+
       </Box>
     );
   }
@@ -526,40 +538,40 @@ export default function Form() {
       <div className="flex justify-between pt-4">
         {activeStep === 0 ? (
           <Button
-          
-  
+            disabled
+
             sx={{
-            
+
               color: 'gray',
               border: 'none',
             }}
           >
             Back
           </Button>
-        ) :activeStep ===1? (
+        ) : activeStep === 1 ? (
           <Button
-  
+            onClick={handleBack}
             sx={{
-              backgroundColor:'black',
-              color:'white',
+              backgroundColor: 'black',
+              color: 'white',
             }}
             className="bg-black text-white"
           >
             Change Address
           </Button>
         ) : (
-           (
-          <Button
-            onClick={handleBack}
-            sx={{
-              color: 'white',
-              backgroundColor:'black'
-            }}
-            className="bg-black text-white"
-          >
-            Back
-          </Button>
-        )
+          (
+            <Button
+              onClick={handleBack}
+              sx={{
+                color: 'white',
+                backgroundColor: 'black'
+              }}
+              className="bg-black text-white"
+            >
+              Back
+            </Button>
+          )
         )}
 
 
@@ -573,7 +585,7 @@ export default function Form() {
             Next
           </Button>
 
-          
+
         ) : activeStep === 1 || activeStep === 2 || activeStep === 3 ? (
           <Button
             sx={{ backgroundColor: 'black' }}
