@@ -1,13 +1,16 @@
 
 
 
+
 "use client";
+
 import React from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import StepConnector from "@mui/material/StepConnector";
+
 
 type StepperProps = {
   steps: number[];
@@ -16,33 +19,35 @@ type StepperProps = {
 
 export default function CustomStepper({ steps, activeStep }: StepperProps) {
   return (
-    <Box sx={{ width: "100%" }}>
-      <h2 className="text-[34px] text-app_primary font-bold text-center">Seasonal Service Registration</h2>
-      <Stepper className="mt-4 px-20"
-        activeStep={activeStep}
+    <div className="w-full" > 
+    <Box sx={{ width: "100%", overflow:'hidden' }} >
+      <h2 className="text-[34px] text-app_primary font-bold text-center w-full">
+        Seasonal Service Registration
+      </h2>
 
+      <Stepper
+        className="mt-4 px-20 w-full justify-center"
+        activeStep={activeStep}
         connector={
           <StepConnector
             sx={{
-
               "& .MuiStepConnector-line": {
-                borderColor: '#000',
+                width:'100%',
+                borderColor: "#000",
                 borderTopWidth: 5,
-                borderStyle: 'solid',
+                borderStyle: "solid",
               },
-
               "&.Mui-completed .MuiStepConnector-line": {
-                borderColor: '#890202',
+                borderColor: "#890202",
               },
               "&.Mui-active .MuiStepConnector-line": {
-                borderColor: '#890202',
+                borderColor: "#890202",
               },
             }}
           />
         }
         sx={{
-
-          '& .MuiStep-root': {
+          "& .MuiStep-root": {
             padding: 0,
           },
         }}
@@ -51,31 +56,30 @@ export default function CustomStepper({ steps, activeStep }: StepperProps) {
           <Step key={num}>
             <StepLabel
               sx={{
-                '& .MuiStepLabel-iconContainer': {
+                "& .MuiStepLabel-iconContainer": {
                   paddingRight: 0,
                 },
-                '& .MuiStepLabel-label': {
-                  display: 'none',
+                "& .MuiStepLabel-label": {
+                  display: "none",
                 },
               }}
               StepIconComponent={({ active, completed }) => (
                 <div
                   style={{
-                    width: '30px',
-                    height: '30px',
-                    borderRadius: '50%',
-                    border: active ? '3px solid #890202' : 'none',
-                    backgroundColor: completed ? '#890202' : '#000',
-                    color: '#fff',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap:'2px'
+                    width: "30px",
+                    height: "30px",
+                    borderRadius: "50%",
+                    border: active ? "3px solid #890202" : "none",
+                    backgroundColor: completed ? "#890202" : "#000",
+                    color: "#fff",
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  {completed ? '✓' : num}
+                  {completed ? "✓" : num}
                 </div>
               )}
             />
@@ -83,5 +87,9 @@ export default function CustomStepper({ steps, activeStep }: StepperProps) {
         ))}
       </Stepper>
     </Box>
+
+    </div>
   );
 }
+
+
